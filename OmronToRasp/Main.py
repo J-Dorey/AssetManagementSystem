@@ -1,3 +1,4 @@
+from random import randint, random
 import time
 import Functions
 import Addresses
@@ -27,7 +28,14 @@ while(1):
     '''
 
     message = Server.socketServer('192.168.0.249', 1234, 20)
-    print(message)
+
+    for k, v in message.items():
+        message[k] = randint(0,100)
+        print(k,':', message[k])
+    
+    print('.' * 100)
+
+    
 
 
 

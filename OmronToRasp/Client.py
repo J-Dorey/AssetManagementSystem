@@ -16,6 +16,6 @@ dict = Addresses.loadConfig()
 
 while(1):
     clientSend('192.168.0.249', 1234, dict)
-    time.sleep(1)
+    time.sleep(5)
 
   
