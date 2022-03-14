@@ -1,3 +1,4 @@
+from pprint import pprint
 from random import randint, random
 import time
 import Functions
@@ -31,9 +32,10 @@ while(1):
 
     for k, v in message.items():
         message[k] = randint(0,100)
-        print(k,':', message[k])
-    
-    print('.' * 100)
+
+    pprint(message)
+    print('')
+
 
     
 
