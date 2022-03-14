@@ -64,7 +64,7 @@ def mitchDummyData():
     return(dictionary)
 
 # This function sets the ip address of the raspberry pi
-def ipAddressSet():
+def ipAddressSet(ipaddress):
     os.system('sudo ifconfig eth0 down')
-    os.system('sudo ifconfig eth0 192.168.250.200')
+    os.system('sudo ifconfig eth0 ' + ipaddress)
     os.system('sudo ifconfig eth0 up')

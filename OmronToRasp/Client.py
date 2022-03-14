@@ -8,9 +8,16 @@ import time
 def clientSend(ipaddress, port, dictionary):
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((ipaddress, port))
-    serial_dict = pickle.dumps(dictionary)
-    client_socket.send(serial_dict)
+    try:
+        client_socket.connect((ipaddress, port))
+        serial_dict = pickle.dumps(dictionary)
+        client_socket.send(serial_dict)
+        client_socket.close()
+        
+    except socket.error as e:
+        print(e)
+        client_socket.close()
+
 
 dict = Addresses.loadConfig()
 
