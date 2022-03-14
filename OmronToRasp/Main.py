@@ -1,9 +1,6 @@
 from pprint import pprint
 from random import randint, random
-import re
 import time
-
-from janus import Queue
 import Functions
 import Addresses
 import Server
