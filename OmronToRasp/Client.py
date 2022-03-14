@@ -20,9 +20,17 @@ def clientSend(ipaddress, port, dictionary):
 
 
 dict = Addresses.loadConfig()
+increment = 0
 
 while(1):
-    clientSend('192.168.0.249', 1234, dict)
-    time.sleep(5)
+
+    for k, v in dict.items():
+        dict[k] = increment
+
+    dict['time_stamp'] = time.strftime("%H:%M:%S", time.localtime())
+
+    clientSend('192.168.20.39', 1234, dict)
+    time.sleep(1)
+    increment += 1
 
   
