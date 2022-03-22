@@ -25,6 +25,7 @@ def stateMachine(state):
     # this state is for pi1 
     if (state == states[0]):
         Functions.ipAddressSet('192.168.250.11') # used for pi1
+        time.sleep(3)
         address_dictionary = Addresses.loadConfig()
         
 
@@ -44,17 +45,24 @@ def stateMachine(state):
 
             reading_dictionary = Functions.readMemoryAddressDict(address_dictionary)
             
-            Client.clientSend('192.168.250.12', 1234, reading_dictionary)
+            Client.clientSend('192.168.250.13', 1234, reading_dictionary)
             time.sleep(3)
 
     # this state is for pi3
     if (state == states[2]):
 
+        Functions.ipAddressSet('192.168.250.13')
+        time.sleep(3)
+
         # Use multithreading to allow other operations while wiating for client to connect
-        multithreading_queue = queue.Queue()
+        # multithreading_queue = queue.Queue()
 
         while(1):
 
+            message = Server.socketServer('192.168.250.13', 1234, 30)
+            pprint(message)
+            print('#' * 200)
+            '''
             message = threading.Thread(
                 target= Server.socketServerMultiThreading, 
                 args= ('192.168.0.249', 1234, 20, multithreading_queue)
@@ -71,6 +79,6 @@ def stateMachine(state):
 
             pprint(recieved_dictionary)
             print('')
-
+            '''
 stateMachine('pi1')
-stateMachine('pi3')
+# stateMachine('pi3')
