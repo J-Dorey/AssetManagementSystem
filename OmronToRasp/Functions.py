@@ -3,7 +3,7 @@ import os
 import yaml
 import random
 import pickle
-
+import csv
 
 # Function to setup connection to Omron PLC
 def setup(ip_address, destination_node, source_node):
@@ -68,3 +68,9 @@ def ipAddressSet(ipaddress):
     os.system('sudo ifconfig eth0 down')
     os.system('sudo ifconfig eth0 ' + ipaddress)
     os.system('sudo ifconfig eth0 up')
+
+def saveToFile(file_name, dictionary):
+    with open(file_name, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow()
+
