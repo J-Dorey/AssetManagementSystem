@@ -38,5 +38,4 @@ def socketServerMultiThreading(ipaddr, port, timeout, queue):
         client_connected, client_address = server_socket.accept()
         message = client_connected.recv(1024)
         messagedict = pickle.loads(message)
-        time.sleep(10)
         queue.put(messagedict)

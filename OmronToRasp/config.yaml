@@ -24,4 +24,3 @@ trolley_operational_hours:      [0,18,0]
 voltage_output_alternator:      [0,19,0]
 windscreen_wiper_runtime:       [0,20,0]
 workhead_insertions:            [0,21,0]
-time_stamp: 0
