@@ -29,6 +29,8 @@ def stateMachine(state):
         address_dictionary = Addresses.loadConfig()
         
 
+        
+
         while(1):
             connections_error = 0
             response = Functions.setup('192.168.250.1', 2, 1)
