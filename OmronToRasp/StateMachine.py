@@ -18,7 +18,7 @@ from pprint import pprint
 
 # State Machine will be used to determine which pi will act as pi1, pi2 or pi 3
 
-def stateMachine(state):
+def stateMachine(state, omron_ip):
 
     states = ['pi1', 'pi2', 'pi3']
 
@@ -26,19 +26,19 @@ def stateMachine(state):
     if (state == states[0]):
         Functions.ipAddressSet('192.168.250.11') # used for pi1
         time.sleep(15)
-        address_dictionary = Addresses.loadConfig()
+        address_dictionary = Addresses.loadConfig('OmronToRasp\m400config.yaml')
         
 
         
 
         while(1):
             connections_error = 0
-            response = Functions.setup('192.168.250.1', 2, 1)
+            response = Functions.setup(omron_ip, 2, 1)
             time.sleep(1)
 
 
             while(type(response) == str):
-                response = Functions.setup('192.168.250.1', 2, 1)
+                response = Functions.setup(omron_ip, 2, 1)
                 connections_error += 1
                 time.sleep(1)
 
@@ -46,8 +46,8 @@ def stateMachine(state):
                     return('Connection to Omron has failed')
 
             reading_dictionary = Functions.readMemoryAddressDict(address_dictionary)
-            
-            Client.clientSend('192.168.250.13', 1234, reading_dictionary)
+            pprint(reading_dictionary)
+           # Client.clientSend('192.168.250.13', 1234, reading_dictionary)
             time.sleep(3)
 
     # this state is for pi3
@@ -83,5 +83,5 @@ def stateMachine(state):
             pprint(recieved_dictionary)
             print('')
         
-stateMachine('pi1')
+stateMachine('pi1', '192.168.250.1')
 # stateMachine('pi3')
