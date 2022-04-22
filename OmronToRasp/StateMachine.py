@@ -26,7 +26,7 @@ def stateMachine(state, omron_ip):
     if (state == states[0]):
         Functions.ipAddressSet('192.168.250.11') # used for pi1
         time.sleep(15)
-        address_dictionary = Addresses.loadConfig('OmronToRasp\m400config.yaml')
+        address_dictionary = Addresses.loadConfig('m400config.yaml')
         
 
         
