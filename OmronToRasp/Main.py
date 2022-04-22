@@ -18,7 +18,7 @@ def main(omron_ipaddress):
 
         return(variable_dictionary)
 
-variable_dictionary = Addresses.loadConfig()
+variable_dictionary = Addresses.loadConfig('M188config.yaml')
 plc_connection = Functions.omronConnectionSetup('192.168.250.1')
 
 while(1):

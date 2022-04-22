@@ -9,6 +9,7 @@ import csv
 import Addresses
 from pprint import pprint
 import datetime
+from aphyt import omron
 
 # Function to setup connection to Omron PLC
 def setup(ip_address, destination_node, source_node):
@@ -90,7 +91,7 @@ def saveToFile(file_name, dictionary):
         writer.writerow(values)
         file.close()
 
-        
+
 def omronConnectionSetup(omron_ipaddress):
     plc_connection = omron.n_series.NSeries()
     plc_connection.connect_explicit(omron_ipaddress)
