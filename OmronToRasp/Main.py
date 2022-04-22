@@ -20,7 +20,7 @@ def main(omron_ipaddress):
             try:
                 variable_dictionary[k] = plc_connection.read_variable(k)
             except:
-                vairable_dictionary[k] = 'N/A'
+                variable_dictionary[k] = 'N/A'
 
         pprint(variable_dictionary)
         time.sleep(2)
