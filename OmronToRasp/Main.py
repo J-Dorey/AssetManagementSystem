@@ -8,7 +8,7 @@ import Addresses
 from pprint import pprint
 import Functions
 
-def main(omron_ipaddress):
+def main(variable_dictionary, plc_connection):
 
     for k in variable_dictionary.keys():
         try:
