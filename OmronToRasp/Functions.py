@@ -88,9 +88,16 @@ def saveToFile(file_name, dictionary):
 
         #writer.writerow(keys)
         writer.writerow(values)
-
         file.close()
+
+        
+def omronConnectionSetup(omron_ipaddress):
+    plc_connection = omron.n_series.NSeries()
+    plc_connection.connect_explicit(omron_ipaddress)
+    plc_connection.register_session()
+    plc_connection.update_variable_dictionary()
     
+    return(plc_connection)
 
             
 

@@ -6,23 +6,22 @@ from aphyt import omron
 import time
 import Addresses 
 from pprint import pprint
+import Functions
 
 def main(omron_ipaddress):
-    plc_connection = omron.n_series.NSeries()
-    plc_connection.connect_explicit(omron_ipaddress)
-    plc_connection.register_session()
-    plc_connection.update_variable_dictionary()
 
-    variable_dictionary = Addresses.loadConfig()
+    for k in variable_dictionary.keys():
+        try:
+            variable_dictionary[k] = plc_connection.read_variable(k)
+        except:
+            variable_dictionary[k] = 'N/A'
 
-    while(1):
-        for k in variable_dictionary.keys():
-            try:
-                variable_dictionary[k] = plc_connection.read_variable(k)
-            except:
-                variable_dictionary[k] = 'N/A'
+        return(variable_dictionary)
 
-        pprint(variable_dictionary)
-        time.sleep(2)
+variable_dictionary = Addresses.loadConfig()
+plc_connection = Functions.omronConnectionSetup('192.168.250.1')
 
-main('192.168.250.1')
+while(1):
+    variable_dictionary = main(variable_dictionary, plc_connection)
+    pprint(variable_dictionary)
+    time.sleep(2)
