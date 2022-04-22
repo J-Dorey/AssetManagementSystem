@@ -16,7 +16,7 @@ def main(variable_dictionary, plc_connection):
         except:
             variable_dictionary[k] = 'N/A'
 
-        return(variable_dictionary)
+    return(variable_dictionary)
 
 variable_dictionary = Addresses.loadConfig('M188config.yaml')
 plc_connection = Functions.omronConnectionSetup('192.168.250.1')
