@@ -1,11 +1,11 @@
-from datetime import date, datetime
-from turtle import Turtle
-import fins.udp
+#from datetime import date, datetime
+#from turtle import Turtle
+#import fins.udp
 import os
 import yaml
-import random
-import pickle
-import csv
+#import random
+#import pickle
+#import csv
 import Addresses
 from pprint import pprint
 import datetime
@@ -99,6 +99,30 @@ def omronConnectionSetup(omron_ipaddress):
     plc_connection.update_variable_dictionary()
     
     return(plc_connection)
+
+# Main read function used to communicate with omron PLC 
+ 
+def readPLCVariables(variable_dictionary):
+            
+    plc_connection = omronConnectionSetup('192.168.250.1')
+    
+    for k in variable_dictionary.keys():
+        try:
+            variable_dictionary[k] = plc_connection.read_variable(k)
+        except:
+            variable_dictionary[k] = 'N/A'
+            
+    plc_connection.close_explicit()
+    
+    return(variable_dictionary)
+            
+    
+    
+    
+    
+    
+    
+    
 
             
 
